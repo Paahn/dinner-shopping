@@ -11,7 +11,8 @@ export class RecipeItemComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+  }
   }
 
 }
