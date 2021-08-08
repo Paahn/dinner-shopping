@@ -1,6 +1,7 @@
 <app-header (featureSelected)="onNavigate($event)"></app-header>
 <div class="container">
   <div class="row">
+    <div class="content"><span>One place to create and save your recipes.</span></div>
     <div class="col-md-12">
       <app-recipes *ngIf="loadedFeature === 'recipe'"></app-recipes>
       <app-shopping-list *ngIf="loadedFeature !== 'recipe'"></app-shopping-list>
