@@ -14,4 +14,8 @@ export class RecipeService {
         )
     ];
 
+    public getRecipes(): Recipe[] {
+        return this.recipes.slice();
+    }
+
 }
