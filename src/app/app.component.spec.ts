@@ -26,6 +26,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('One place to create and save your recipes.');
+    expect(compiled.querySelector('.content span').textContent).toContain('One place to create, save and shop for your recipes.');
   });
 });
