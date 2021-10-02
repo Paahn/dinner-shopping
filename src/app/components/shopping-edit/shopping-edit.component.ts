@@ -13,6 +13,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   public editMode: boolean = false;
   public editedIngredientIndex: number;
+  public editedIngredient: Ingredient;
 
   constructor(private shoppingListService: ShoppingListService) { }
 
@@ -22,6 +23,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
         (index: number) => {
           this.editMode = true;
           this.editedIngredientIndex = index;
+          this.editedIngredient = this.shoppingListService.getIngredient(index);
         }
       );
   }
