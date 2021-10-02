@@ -12,7 +12,7 @@ import { ShoppingListService } from 'src/app/services/shopping-list.service';
 export class ShoppingEditComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   public editMode: boolean = false;
-  public editedItemIndex: number;
+  public editedIngredientIndex: number;
 
   constructor(private shoppingListService: ShoppingListService) { }
 
@@ -21,12 +21,12 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
       .subscribe(
         (index: number) => {
           this.editMode = true;
-          this.editedItemIndex = index;
+          this.editedIngredientIndex = index;
         }
       );
   }
 
-  public onAddItem(myForm: NgForm) {
+  public onAddIngredient(myForm: NgForm) {
     const value = myForm.value;
     const newIngredient = new Ingredient(value.name, value.amount);
     this.shoppingListService.addIngredient(newIngredient);
