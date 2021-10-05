@@ -16,6 +16,11 @@ export class RecipeEditComponent implements OnInit {
   constructor(private route:ActivatedRoute,
     private recipeService: RecipeService) { }
 
+
+  public onSubmit(): void {
+    console.log(this.recipeForm);
+  }
+
   public ngOnInit(): void {
     this.route.params
       .subscribe(
