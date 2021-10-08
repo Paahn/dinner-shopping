@@ -22,6 +22,7 @@ export class RecipeEditComponent implements OnInit {
     (this.editMode)
     ? this.recipeService.updateRecipe(this.id, this.recipeForm.value)
     : this.recipeService.addRecipe(this.recipeForm.value);
+    this.onCancel();
   }
 
   public get controls(): AbstractControl[] {
