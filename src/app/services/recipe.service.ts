@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 import { Ingredient } from "../models/ingredient.model";
 import { Recipe } from "../models/recipe.model";
 import { ShoppingListService } from "./shopping-list.service";
@@ -11,6 +12,8 @@ export class RecipeService {
         'Tzatziki',
         'Homemade tzatziki',
         'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F9%2F2014%2F02%2F21%2F2014-r-xl-cucumber-dill-tzatziki.jpg',
+  public recipeListModified = new Subject<Recipe[]>();
+
         [
             new Ingredient('Greek Yogurt', 1),
             new Ingredient('Cucumber', 1),
@@ -50,5 +53,7 @@ export class RecipeService {
     public updateRecipe(index: number, newRecipe: Recipe): void {
       this.recipes[index] = newRecipe;
     }
+    this.recipeListModified.next(this.recipes.slice());
+    this.recipeListModified.next(this.recipes.slice());
 
 }
