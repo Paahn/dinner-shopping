@@ -47,4 +47,8 @@ export class RecipeService {
       this.recipes.push(recipe);
     }
 
+    public updateRecipe(index: number, newRecipe: Recipe): void {
+      this.recipes[index] = newRecipe;
+    }
+
 }
