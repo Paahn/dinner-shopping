@@ -9,9 +9,10 @@ export class FilterPipe implements PipeTransform {
   transform(value: Recipe[], filterValue: string, property: string): Recipe[] {
     if (filterValue === '') return value;
 
+    const filterVal = filterValue.toLowerCase();
     const filterArray = [];
       for (const item of value) {
-        if (item[property] === filterValue) {
+        if (item[property].toLowerCase().includes(filterVal)) {
           filterArray.push(item);
         }
       }
