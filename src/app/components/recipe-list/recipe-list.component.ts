@@ -12,6 +12,7 @@ import { RecipeService } from 'src/app/services/recipe.service';
 export class RecipeListComponent implements OnInit, OnDestroy {
   public recipes: Recipe[];
   public subscription: Subscription;
+  public filteredRecipes: string = '';
 
   constructor(
     private recipeService: RecipeService,
