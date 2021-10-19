@@ -6,12 +6,12 @@ import { Recipe } from '../models/recipe.model';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(value: Recipe[], filterValue: string): Recipe[] {
+  transform(value: Recipe[], filterValue: string, property: string): Recipe[] {
     if (filterValue === '') return value;
-    
+
     const filterArray = [];
       for (const item of value) {
-        if (item.name === filterValue) {
+        if (item[property] === filterValue) {
           filterArray.push(item);
         }
       }
