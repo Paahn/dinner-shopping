@@ -15,6 +15,6 @@ export class HeaderComponent {
   }
 
   public onGetRecipes(): void {
-    this.recipeResource.getRecipes();
+    this.recipeResource.getRecipes().subscribe();
   }
 }
