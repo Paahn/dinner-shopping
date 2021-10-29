@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { RecipeService } from "./recipe.service";
 import { environment } from '../../environments/environment.custom';
+import { Recipe } from "../models/recipe.model";
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,9 @@ export class RecipeResource {
   }
 
   public getRecipes(): void {
-    this.http.get(environment.MSAL.API_URL)
+    this.http.get<Recipe[]>(environment.MSAL.API_URL)
       .subscribe(recipes => {
-        console.log(recipes);
+        this.recipeService.setRecipes(recipes);
       })
   }
 }
