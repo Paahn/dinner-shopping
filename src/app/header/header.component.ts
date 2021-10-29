@@ -9,7 +9,12 @@ export class HeaderComponent {
   constructor(
     private recipeResource: RecipeResource
   ) {}
+
   public onCreateRecipe(): void {
     this.recipeResource.createRecipes();
+  }
+
+  public onGetRecipes(): void {
+    this.recipeResource.getRecipes();
   }
 }

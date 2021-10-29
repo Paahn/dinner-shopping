@@ -18,4 +18,11 @@ export class RecipeResource {
       console.log(response)
     })
   }
+
+  public getRecipes(): void {
+    this.http.get(environment.MSAL.API_URL)
+      .subscribe(recipes => {
+        console.log(recipes);
+      })
+  }
 }
