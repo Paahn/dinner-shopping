@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "config": "ts-node set-env.ts",
+    "start": "npm run config && ng serve --configuration=custom",
+    "build": "npm run config && ng build --configuration=custom",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -29,6 +30,7 @@
     "@angular/compiler-cli": "~12.0.5",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
+    "dotenv": "^10.0.0",
     "jasmine-core": "~3.7.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
