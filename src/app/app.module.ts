@@ -18,6 +18,7 @@ import { RecipeStartComponent } from './components/recipe-start/recipe-start.com
 import { RecipeEditComponent } from './components/recipe-edit/recipe-edit.component';
 import { RecipeService } from './services/recipe.service';
 import { FilterPipe } from './pipes/filter.pipe';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     DropdownDirective,
     RecipeStartComponent,
     RecipeEditComponent,
-    FilterPipe
+    FilterPipe,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
