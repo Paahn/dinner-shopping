@@ -8,11 +8,11 @@ import { RecipeService } from "./recipe.service";
 export class RecipesResolverService implements Resolve<Recipe[]> {
   constructor(
     private recipeResource: RecipeResource,
-    private recipeServoce: RecipeService
+    private recipeService: RecipeService
   ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const recipes = this.recipeServoce.getRecipes();
+    const recipes = this.recipeService.getRecipes();
     if (recipes.length === 0) {
       return this.recipeResource.getRecipes();
     } else {
