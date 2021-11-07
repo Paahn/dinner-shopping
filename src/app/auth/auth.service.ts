@@ -15,7 +15,8 @@ export class AuthService {
     constructor(private http: HttpClient) {}
 
     public signUp(email: string, password: string) {
-        return this.http.post(environment.MSAL.API_URL_SIGNUP,
+        return this.http.post<AuthResponseData>(
+            environment.MSAL.API_URL_SIGNUP,
             {
                 email: email,
                 password: password,
