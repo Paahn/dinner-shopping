@@ -37,7 +37,7 @@ export class AuthComponent implements OnInit {
             this.isLoading = false;
           },
           error => {
-            this.error = 'An error occured';
+            this.error = error.error.error.message;
             this.isLoading = false;
           }
         );
