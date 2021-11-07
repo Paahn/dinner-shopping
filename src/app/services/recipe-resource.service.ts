@@ -13,7 +13,7 @@ export class RecipeResource {
 
   public createRecipes(): void {
     const recipes = this.recipeService.getRecipes();
-    this.http.put(environment.MSAL.API_URL,
+    this.http.put(environment.MSAL.API_URL_RECIPES,
     recipes
     )
     .subscribe(response => {
@@ -22,7 +22,7 @@ export class RecipeResource {
   }
 
   public getRecipes() {
-    return this.http.get<Recipe[]>(environment.MSAL.API_URL)
+    return this.http.get<Recipe[]>(environment.MSAL.API_URL_RECIPES)
       .pipe(map(recipes => {
         return recipes.map(recipe => {
           return {...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []};

@@ -12,7 +12,7 @@ export const environment = {
  production: false,
  API_BASE_PATH: getApiBasePath(),
  MSAL: {
-  API_URL: '${process.env.API_URL}'
+  API_URL_RECIPES: '${process.env.API_URL_RECIPES}'
 },
  debugStream: '${process.env.DEBUG_STREAM}',
 };
