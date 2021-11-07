@@ -9,6 +9,7 @@ import { AuthService } from './auth.service';
 })
 export class AuthComponent implements OnInit {
   public isLoginMode: boolean = true;
+  public isLoading: boolean;
 
   constructor(private authService: AuthService) { }
 
@@ -23,6 +24,8 @@ export class AuthComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
 
+    this.isLoading = true;
+
     if (this.isLoginMode) {
       // todo implement login
     } else {
@@ -30,9 +33,11 @@ export class AuthComponent implements OnInit {
         .subscribe(
           responseData => {
             console.log(responseData);
+            this.isLoading = false;
           },
           error => {
             console.log(error);
+            this.isLoading = false;
           }
         );
     }
