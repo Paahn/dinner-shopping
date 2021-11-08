@@ -28,7 +28,17 @@ export class AuthComponent implements OnInit {
     this.isLoading = true;
 
     if (this.isLoginMode) {
-      // todo implement login
+      this.authService.signIn(email, password)
+      .subscribe(
+        responseData => {
+          console.log(responseData);
+          this.isLoading = false;
+        },
+        errorMessage => {
+          this.error = errorMessage;
+          this.isLoading = false;
+        }
+      );
     } else {
       this.authService.signUp(email, password)
         .subscribe(
