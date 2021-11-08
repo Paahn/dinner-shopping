@@ -4,7 +4,7 @@ import { throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { environment } from '../../environments/environment.custom';
 
-interface AuthResponseData {
+export interface AuthResponseData {
     idToken: string;
     email: string;
     refreshToken: string;
