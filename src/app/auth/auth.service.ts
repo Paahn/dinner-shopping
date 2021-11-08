@@ -10,6 +10,7 @@ interface AuthResponseData {
     refreshToken: string;
     expiresIn: string;
     localId: string;
+    registered?: boolean;
 }
 
 @Injectable({ providedIn:'root' })
@@ -36,6 +37,18 @@ export class AuthService {
                   errorMessage = 'A user with this email already exists.'
               }
             return throwError(errorMessage);
-        }));
+        })
+      );
+    }
+
+    public signIn(email: string, password: string) {
+      return this.http.post<AuthResponseData>(
+        environment.MSAL.API_URL_SIGNIN,
+        {
+          email: email,
+          password: password,
+          returnSecureToken: true
+        }
+      )
     }
 }
