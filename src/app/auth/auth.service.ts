@@ -34,14 +34,12 @@ export class AuthService {
       (
         catchError(this.handleError),
         tap(data => {
-          const expirationDate = new Date(new Date().getTime() + +data.expiresIn * 1000);
-          const user = new User(
+          this.handleAuthentication(
             data.email,
             data.localId,
             data.idToken,
-            expirationDate
+            +data.expiresIn
           );
-          this.user.next(user);
         })
       );
   }
@@ -57,7 +55,15 @@ export class AuthService {
     )
     .pipe
     (
-      catchError(this.handleError)
+      catchError(this.handleError),
+      tap(data => {
+        this.handleAuthentication(
+          data.email,
+          data.localId,
+          data.idToken,
+          +data.expiresIn
+        );
+      })
     );
   }
 
