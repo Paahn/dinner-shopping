@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
@@ -18,27 +18,18 @@ export class AuthService {
     constructor(private http: HttpClient) {}
 
     public signUp(email: string, password: string) {
-        return this.http.post<AuthResponseData>(
-            environment.MSAL.API_URL_SIGNUP,
-            {
-                email: email,
-                password: password,
-                returnSecureToken: true
-            }
-        )
-        .pipe(catchError(error => {
-            let errorMessage: string = 'An unknown error occured';
-
-            if (!error.error || !error.error.error) {
-                return throwError(errorMessage);
-            }
-            switch (error.error.error.message) {
-                case 'EMAIL_EXISTS':
-                  errorMessage = 'A user with this email already exists.'
-              }
-            return throwError(errorMessage);
-        })
-      );
+      return this.http.post<AuthResponseData>(
+          environment.MSAL.API_URL_SIGNUP,
+          {
+              email: email,
+              password: password,
+              returnSecureToken: true
+          }
+      )
+      .pipe
+        (
+          catchError(this.handleError)
+        );
     }
 
     public signIn(email: string, password: string) {
@@ -50,5 +41,22 @@ export class AuthService {
           returnSecureToken: true
         }
       )
+      .pipe
+      (
+        catchError(this.handleError)
+      );
+    }
+
+    private handleError(error: HttpErrorResponse) {
+      let errorMessage: string = 'An unknown error occured';
+
+      if (!error.error || !error.error.error) {
+          return throwError(errorMessage);
+      }
+      switch (error.error.error.message) {
+          case 'EMAIL_EXISTS':
+            errorMessage = 'A user with this email already exists.'
+        }
+      return throwError(errorMessage);
     }
 }
