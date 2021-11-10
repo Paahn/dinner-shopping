@@ -17,53 +17,52 @@ export interface AuthResponseData {
 export class AuthService {
     constructor(private http: HttpClient) {}
 
-    public signUp(email: string, password: string) {
-      return this.http.post<AuthResponseData>(
-          environment.MSAL.API_URL_SIGNUP,
-          {
-              email: email,
-              password: password,
-              returnSecureToken: true
-          }
-      )
-      .pipe
-        (
-          catchError(this.handleError)
-        );
-    }
+  constructor(private http: HttpClient) {}
 
-    public signIn(email: string, password: string) {
-      return this.http.post<AuthResponseData>(
-        environment.MSAL.API_URL_SIGNIN,
+  public signUp(email: string, password: string) {
+    return this.http.post<AuthResponseData>(
+        environment.MSAL.API_URL_SIGNUP,
         {
-          email: email,
-          password: password,
-          returnSecureToken: true
+            email: email,
+            password: password,
+            returnSecureToken: true
         }
-      )
-      .pipe
+    )
+    .pipe
       (
         catchError(this.handleError)
       );
-    }
-
-    private handleError(error: HttpErrorResponse) {
-      let errorMessage: string = 'An unknown error occured';
-
-      if (!error.error || !error.error.error) {
-          return throwError(errorMessage);
+  }
+  public signIn(email: string, password: string) {
+    return this.http.post<AuthResponseData>(
+      environment.MSAL.API_URL_SIGNIN,
+      {
+        email: email,
+        password: password,
+        returnSecureToken: true
       }
-      switch (error.error.error.message) {
-          case 'EMAIL_EXISTS':
-            errorMessage = 'A user with this email already exists.';
-            break;
-          case 'EMAIL_NOT_FOUND':
-            errorMessage = 'Email not found. Please sign up first!';
-            break;
-          case 'INVALID_PASSWORD':
-            errorMessage = 'Wrong password. Please try again!';
-            break;
-        }
-      return throwError(errorMessage);
+    )
+    .pipe
+    (
+      catchError(this.handleError)
+    );
+  }
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage: string = 'An unknown error occured';
+    if (!error.error || !error.error.error) {
+        return throwError(errorMessage);
     }
+    switch (error.error.error.message) {
+        case 'EMAIL_EXISTS':
+          errorMessage = 'A user with this email already exists.';
+          break;
+        case 'EMAIL_NOT_FOUND':
+          errorMessage = 'Email not found. Please sign up first!';
+          break;
+        case 'INVALID_PASSWORD':
+          errorMessage = 'Wrong password. Please try again!';
+          break;
+      }
+    return throwError(errorMessage);
+  }
 }
