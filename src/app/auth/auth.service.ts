@@ -45,6 +45,7 @@ export class AuthService {
         })
       );
   }
+
   public signIn(email: string, password: string) {
     return this.http.post<AuthResponseData>(
       environment.MSAL.API_URL_SIGNIN,
@@ -59,6 +60,7 @@ export class AuthService {
       catchError(this.handleError)
     );
   }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage: string = 'An unknown error occured';
     if (!error.error || !error.error.error) {
