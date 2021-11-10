@@ -55,7 +55,14 @@ export class AuthService {
       }
       switch (error.error.error.message) {
           case 'EMAIL_EXISTS':
-            errorMessage = 'A user with this email already exists.'
+            errorMessage = 'A user with this email already exists.';
+            break;
+          case 'EMAIL_NOT_FOUND':
+            errorMessage = 'Email not found. Please sign up first!';
+            break;
+          case 'INVALID_PASSWORD':
+            errorMessage = 'Wrong password. Please try again!';
+            break;
         }
       return throwError(errorMessage);
     }
