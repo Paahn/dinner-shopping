@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { RecipeService } from "./recipe.service";
 import { environment } from '../../environments/environment.custom';
 import { Recipe } from "../models/recipe.model";
@@ -27,11 +27,16 @@ export class RecipeResource {
   }
 
   public getRecipes() {
-    this.authService.user
+    return this.authService.user
     .pipe(
       take(1),
       exhaustMap(user => {
-        return this.http.get<Recipe[]>(environment.MSAL.API_URL_RECIPES);
+        return this.http.get<Recipe[]>(
+          environment.MSAL.API_URL_RECIPES,
+          {
+            params: new HttpParams().set('auth', user.token)
+          }
+        );
       }),
       map(recipes => {
         return recipes.map( recipe => {
