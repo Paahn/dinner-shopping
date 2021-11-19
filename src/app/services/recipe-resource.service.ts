@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { RecipeService } from "./recipe.service";
 import { environment } from '../../environments/environment.custom';
 import { Recipe } from "../models/recipe.model";
-import { map, take, tap } from "rxjs/operators";
+import { exhaustMap, map, take, tap } from "rxjs/operators";
 import { AuthService } from "../auth/auth.service";
 
 @Injectable({
@@ -27,18 +27,23 @@ export class RecipeResource {
   }
 
   public getRecipes() {
-    this.authService.user.pipe(take(1)).subscribe(user => {
-
-    });
-    return this.http.get<Recipe[]>(environment.MSAL.API_URL_RECIPES)
-      .pipe(map(recipes => {
-        return recipes.map(recipe => {
-          return {...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []};
+    this.authService.user
+    .pipe(
+      take(1),
+      exhaustMap(user => {
+        return this.http.get<Recipe[]>(environment.MSAL.API_URL_RECIPES);
+      }),
+      map(recipes => {
+        return recipes.map( recipe => {
+          return {
+            ...recipe,
+            ingredients: recipe.ingredients ? recipe.ingredients : []
+          }
         })
       }),
       tap(recipes => {
         this.recipeService.setRecipes(recipes)
       })
-      )
+    )
   }
 }
