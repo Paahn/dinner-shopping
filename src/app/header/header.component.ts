@@ -30,6 +30,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.recipeResource.getRecipes().subscribe();
   }
 
+  public onLogout(): void {
+    this.authService.signOut();
+  }
+
   public ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
   }
