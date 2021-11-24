@@ -27,17 +27,10 @@ export class RecipeResource {
   }
 
   public getRecipes() {
-    return this.authService.user
+    return this.http.get<Recipe[]>(
+      environment.MSAL.API_URL_RECIPES
+    )
     .pipe(
-      take(1),
-      exhaustMap(user => {
-        return this.http.get<Recipe[]>(
-          environment.MSAL.API_URL_RECIPES,
-          {
-            params: new HttpParams().set('auth', user.token)
-          }
-        );
-      }),
       map(recipes => {
         return recipes.map( recipe => {
           return {
