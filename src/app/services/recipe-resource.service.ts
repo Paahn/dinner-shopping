@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { RecipeService } from "./recipe.service";
 import { environment } from '../../environments/environment.custom';
 import { Recipe } from "../models/recipe.model";
-import { exhaustMap, map, take, tap } from "rxjs/operators";
-import { AuthService } from "../auth/auth.service";
+import { map, tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +11,7 @@ import { AuthService } from "../auth/auth.service";
 export class RecipeResource {
   constructor(
     private http: HttpClient,
-    private recipeService: RecipeService,
-    private authService: AuthService
+    private recipeService: RecipeService
   ) {}
 
   public createRecipes(): void {
