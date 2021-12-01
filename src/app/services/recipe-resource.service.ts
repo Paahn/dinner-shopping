@@ -29,14 +29,16 @@ export class RecipeResource {
       environment.MSAL.API_URL_RECIPES
     )
     .pipe(
-      map(recipes => {
-        return recipes.map( recipe => {
-          return {
-            ...recipe,
-            ingredients: recipe.ingredients ? recipe.ingredients : []
-          }
-        })
-      }),
+      map(recipes => recipes
+        ? recipes.map(recipe => ({ ingredients: [], ...recipe }))
+        : []
+        // return recipes.map( recipe => {
+        //   return {
+        //     ...recipe,
+        //     ingredients: recipe.ingredients ? recipe.ingredients : []
+        //   }
+        // })
+      ),
       tap(recipes => {
         this.recipeService.setRecipes(recipes)
       })
