@@ -10,14 +10,24 @@ import { RecipesResolverService } from './services/recipe-resolver.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full'},
-  { path: 'recipes', component: RecipesComponent, children: [
+  {
+    path: 'recipes',
+    component: RecipesComponent,
+    children: [
     { path: '', component: RecipeStartComponent },
     { path: 'new', component: RecipeEditComponent},
     { path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService] },
     { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService]}
-  ] },
-  { path: 'shopping-list', component: ShoppingListComponent },
-  { path: 'auth', component: AuthComponent}
+    ]
+  },
+  {
+    path: 'shopping-list',
+    component: ShoppingListComponent
+  },
+  {
+    path: 'auth',
+    component: AuthComponent
+  }
 ];
 
 @NgModule({
