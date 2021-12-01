@@ -19,9 +19,9 @@ export class RecipeResource {
     this.http.put(environment.MSAL.API_URL_RECIPES,
     recipes
     )
-    .subscribe(response => {
-      console.log(response)
-    })
+    // .subscribe(response => {
+    //   console.log(response)
+    // })
   }
 
   public getRecipes() {
