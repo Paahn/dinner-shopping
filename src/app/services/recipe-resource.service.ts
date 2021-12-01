@@ -32,12 +32,6 @@ export class RecipeResource {
       map(recipes => recipes
         ? recipes.map(recipe => ({ ingredients: [], ...recipe }))
         : []
-        // return recipes.map( recipe => {
-        //   return {
-        //     ...recipe,
-        //     ingredients: recipe.ingredients ? recipe.ingredients : []
-        //   }
-        // })
       ),
       tap(recipes => {
         this.recipeService.setRecipes(recipes)
