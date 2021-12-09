@@ -55,6 +55,10 @@ export class AuthComponent implements OnInit {
     form.reset();
   }
 
+  public onHandleClose(): void {
+    this.error = null;
+  }
+
   public ngOnInit(): void {
   }
 

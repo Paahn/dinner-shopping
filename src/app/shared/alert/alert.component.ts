@@ -1,13 +1,13 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 @Component({
   selector: 'app-alert',
   template: `
-    <div class="backdrop"></div>
+    <div class="backdrop" (click)="onClose()"></div>
     <div class="alert-box">
       <p>{{ message }}</p>
       <div class="alert-box-actions">
-        <button class="btn btn-primary">Close</button>
+        <button class="btn btn-primary" (click)="onClose()">Close</button>
       </div>
     </div>
   `,
@@ -19,4 +19,9 @@ import { Component, Input } from "@angular/core";
 })
 export class AlertComponent {
   @Input() public message: string;
+  @Output() public close = new EventEmitter<void>();
+
+  public onClose(): void {
+    this.close.emit();
+  }
 }
