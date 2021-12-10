@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { PlaceHolderDirective } from '../directives/placeholder.directive';
+import { AlertComponent } from '../shared/alert/alert.component';
 import { AuthResponseData, AuthService } from './auth.service';
 
 @Component({
@@ -13,10 +15,12 @@ export class AuthComponent implements OnInit {
   public isLoginMode: boolean = true;
   public isLoading: boolean;
   public error: string = null;
+  @ViewChild(PlaceHolderDirective, { static: false}) public alertReference: PlaceHolderDirective;
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private componentFactoryResolver: ComponentFactoryResolver
   ) { }
 
   public onSwitchAuthMode() {
@@ -49,6 +53,7 @@ export class AuthComponent implements OnInit {
         },
         errorMessage => {
           this.error = errorMessage;
+          this.showErrorAlert(errorMessage);
           this.isLoading = false;
         }
       );
@@ -57,6 +62,14 @@ export class AuthComponent implements OnInit {
 
   public onHandleClose(): void {
     this.error = null;
+  }
+
+  private showErrorAlert(error: string): void {
+    const alertComponentFactory = this.componentFactoryResolver.resolveComponentFactory(AlertComponent);
+    const alertViewContainerRef = this.alertReference.viewContainerRef;
+    alertViewContainerRef.clear();
+
+    alertViewContainerRef.createComponent(alertComponentFactory);
   }
 
   public ngOnInit(): void {
