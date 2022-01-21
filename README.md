@@ -1,7 +1,7 @@
 # DinnerShopping
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
-Created as a course project following [Max's Udemy Angular course](https://www.udemy.com/course/the-complete-guide-to-angular-2/). Adding features, changing the code structure and refactoring to meet best practices as I gain experience with Angular.
+Created as a course project following [Max's Udemy Angular course](https://www.udemy.com/course/the-complete-guide-to-angular-2/). Adding features, changing the code structure and refactoring to meet best practices to gain experience with Angular.
 
 ## Development server
 
