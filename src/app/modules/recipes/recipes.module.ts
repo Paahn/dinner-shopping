@@ -1,8 +1,8 @@
-import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { FilterPipe } from "src/app/pipes/filter.pipe";
+import { SharedModule } from "src/app/shared/shared.module";
+import { FilterPipe } from "src/app/shared/pipes/filter.pipe";
 import { RecipeDetailComponent } from "./components/recipe-detail/recipe-detail.component";
 import { RecipeEditComponent } from "./components/recipe-edit/recipe-edit.component";
 import { RecipeItemComponent } from "./components/recipe-item/recipe-item.component";
@@ -18,13 +18,12 @@ import { RecipesRoutingModule } from "./recipes-routing.module";
         RecipeDetailComponent,
         RecipeItemComponent,
         RecipeStartComponent,
-        RecipeEditComponent,
-        FilterPipe
+        RecipeEditComponent
     ],
     imports: [
         RouterModule,
         FormsModule,
-        CommonModule,
+        SharedModule,
         ReactiveFormsModule,
         RecipesRoutingModule
     ]
