@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { SharedModule } from "src/app/shared/shared.module";
-import { FilterPipe } from "src/app/shared/pipes/filter.pipe";
 import { RecipeDetailComponent } from "./components/recipe-detail/recipe-detail.component";
 import { RecipeEditComponent } from "./components/recipe-edit/recipe-edit.component";
 import { RecipeItemComponent } from "./components/recipe-item/recipe-item.component";
