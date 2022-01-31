@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthModule } from './auth/auth.module';
 import { RecipesModule } from './modules/recipes/recipes.module';
 import { ShoppingListModule } from './modules/shopping-list/shopping-list.module';
 
@@ -14,6 +15,11 @@ const appRoutes: Routes = [
     path: 'shopping-list',
     loadChildren: ():Promise<ShoppingListModule> =>
       import('src/app/modules/shopping-list/shopping-list.module').then(m => m.ShoppingListModule)
+  },
+  {
+    path: 'auth',
+    loadChildren: ():Promise<AuthModule> =>
+      import('src/app/auth/auth.module').then(m => m.AuthModule)
   }
 ];
 
