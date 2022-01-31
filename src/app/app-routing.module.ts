@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RecipesModule } from './modules/recipes/recipes.module';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
-  { path: 'recipes', loadChildren: '/src/app/modules/recipes/recipes.module#RecipesModule' }
+  { path: 'recipes',
+    loadChildren: ():Promise<RecipesModule> =>
+      import('src/app/modules/recipes/recipes.module').then(m => m.RecipesModule)
+  }
 ];
 
 @NgModule({
