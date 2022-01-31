@@ -15,7 +15,7 @@ import { ShoppingListComponent } from "./components/shopping-list/shopping-list.
         FormsModule,
         RouterModule.forChild([
             {
-                path: 'shopping-list',
+                path: '',
                 component: ShoppingListComponent
             }
         ])
