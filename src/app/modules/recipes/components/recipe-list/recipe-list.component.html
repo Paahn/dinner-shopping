@@ -10,7 +10,7 @@
         <app-recipe-item
         *ngFor="let recipeElement of recipes | filter:filteredRecipes:'name'; let i = index"
         [recipe]="recipeElement"
-        [index]="i"
+        [index]="recipes.indexOf(recipeElement)"
         ></app-recipe-item>
     </div>
 </div>
