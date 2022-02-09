@@ -5,11 +5,13 @@ import { RecipeResource } from '../modules/recipes/services/recipe-resource.serv
 
 @Component({
     selector: 'app-header',
-    templateUrl: './header.component.html'
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private userSubscription: Subscription;
   public isAuthenticated: boolean = false;
+  public fetchedRecipes: boolean = false;
 
   constructor(
     private recipeResource: RecipeResource,
@@ -27,6 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public onGetRecipes(): void {
+    this.fetchedRecipes = true;
     this.recipeResource.getRecipes().subscribe();
   }
 
