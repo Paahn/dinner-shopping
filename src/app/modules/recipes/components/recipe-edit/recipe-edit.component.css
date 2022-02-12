@@ -6,3 +6,7 @@ input.ng-invalid.ng-touched,
 textarea.ng-invalid.ng-touched {
   border: 1px solid red;
 }
+
+.add-ingredient {
+  margin: 2rem 0;
+}
