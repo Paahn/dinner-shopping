@@ -6,7 +6,7 @@
 <hr>
 <div class="row">
     <div class="col-xs-12">
-        <input type="text" [(ngModel)]="filteredRecipes">
+        <input type="text" placeholder="Search Recipes..." [(ngModel)]="filteredRecipes">
         <app-recipe-item
         *ngFor="let recipeElement of recipes | filter:filteredRecipes:'name'; let i = index"
         [recipe]="recipeElement"
