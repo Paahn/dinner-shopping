@@ -4,6 +4,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Initially was created as a course project following [Max's Udemy Angular course](https://www.udemy.com/course/the-complete-guide-to-angular-2/). Adding features, changing the code structure and refactoring to meet best practices to gain experience with Angular.
 [Live Deployment](https://dinner-shopping.web.app)
 
+## App Manual
+Sign up for the app and start creating and saving your favorite recipes. You can fetch recipes once you save them. You may add the ingredients from each recipe to the shopping list.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
