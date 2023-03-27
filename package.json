@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "config": "ts-node set-env.ts",
-    "start": "npm run config && ng serve --configuration=custom",
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && npm run config && ng serve --configuration=custom",
     "build": "npm run config && ng build --configuration=custom",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
