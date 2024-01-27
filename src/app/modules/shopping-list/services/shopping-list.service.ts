@@ -18,8 +18,17 @@ export class ShoppingListService {
     }
 
     public addIngredient(ingredient: Ingredient): void {
-        this.ingredients.push(ingredient);
-        this.ingredientListModified.next(this.ingredients.slice());
+        let addIngredient = true;
+        this.ingredients.map(i => {
+          if(i.name.toLocaleLowerCase() === ingredient.name.toLocaleLowerCase()){
+            addIngredient = false;
+            i.amount += ingredient.amount;
+          }
+        });
+        if(addIngredient){
+          this.ingredients.push(ingredient);
+          this.ingredientListModified.next(this.ingredients.slice());
+        }
     }
 
     public addIngredients(ingredients: Ingredient[]): void {
